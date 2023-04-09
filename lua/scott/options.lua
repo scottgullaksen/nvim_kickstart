@@ -1,4 +1,5 @@
 -- :help options
+-- See `:help vim.o`
 
 vim.o.completeopt = 'menuone,noselect'          -- Set completeopt to have a better completion experience
 vim.o.background = 'dark'
@@ -34,3 +35,13 @@ vim.opt.iskeyword:append "-"
 -- vim.opt.whichwrap:append {"<", ">", "[", "]", "h", "l"}
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
