@@ -22,4 +22,3 @@ null_ls.setup {
     code_actions.gitsigns,
   },
 }
-
